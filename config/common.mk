@@ -201,12 +201,10 @@ else
     ro.device.cache_dir=/cache
 endif
 
-<<<<<<< HEAD
-$(call prepend-product-if-exists, vendor/extra/product.mk)
-=======
-# Versioning
-include vendor/aosip/config/version.mk
+# Include SDCLANG definitions if it is requested and available
+ifeq ($(HOST_OS),linux)
+    ifneq ($(wildcard vendor/qcom/sdclang-3.8/),)
+        include vendor/slim/sdclang/sdclang.mk
+    endif
+endif
 
-# include definitions for SDCLANG
-include vendor/aosip/sdclang/sdclang.mk
->>>>>>> 86c1623... common: add support for SDCLANG
